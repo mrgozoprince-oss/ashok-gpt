@@ -1,0 +1,10 @@
+{
+  "name": "ASHOK GPT",
+  "short_name": "ASHOK GPT",
+  "description": "Personal AI workspace prototype",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#090909",
+  "theme_color": "#0b0b0b",
+  "icons": []
+}

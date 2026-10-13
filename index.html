@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b0b">
+  <title>ASHOK GPT</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><span class="brand-mark">⚡</span><div><strong>ASHOK GPT</strong><small>YOUR AI WORKSPACE</small></div></div>
+      <button class="new-chat" id="newChat">＋ New chat</button>
+      <nav>
+        <button class="nav-item active" data-panel="chat">◈ <span>AI Chat</span></button>
+        <button class="nav-item" data-panel="coding">⌘ <span>Coding Lab</span></button>
+        <button class="nav-item" data-panel="mods">▣ <span>Mod & Plugin Maker</span></button>
+        <button class="nav-item" data-panel="assets">◇ <span>Texture & Assets</span></button>
+        <button class="nav-item" data-panel="video">▷ <span>Motion Video Studio</span></button>
+        <button class="nav-item" data-panel="memory">▤ <span>Memory</span></button>
+      </nav>
+      <div class="sidebar-foot"><span class="status-dot"></span> Starter prototype <small>AI engine not connected</small></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+        <div><span class="eyebrow">PERSONAL AI STUDIO</span><h1 id="pageTitle">AI Chat</h1></div>
+        <div class="avatar">A</div>
+      </header>
+
+      <section class="panel show" id="panel-chat">
+        <div class="welcome">
+          <div class="hero-icon">⚡</div>
+          <p class="eyebrow">WELCOME TO YOUR WORKSPACE</p>
+          <h2>Build something <em>powerful.</em></h2>
+          <p class="muted">Chat, code, create and debug — all from one workspace.</p>
+        </div>
+        <div class="suggestions">
+          <button class="suggestion" data-prompt="Help me plan a Minecraft Fabric mod">🎮 <span><b>Minecraft mod</b><small>Plan a Fabric mod</small></span></button>
+          <button class="suggestion" data-prompt="Help me debug a Java error">⌘ <span><b>Debug code</b><small>Find and explain an error</small></span></button>
+          <button class="suggestion" data-prompt="Help me design a resource pack">◇ <span><b>Texture pack</b><small>Plan a resource pack</small></span></button>
+          <button class="suggestion" data-prompt="Help me create a motion edit storyboard">▷ <span><b>Motion edit</b><small>Make an edit plan</small></span></button>
+        </div>
+        <div class="chat-area" id="chatArea" aria-live="polite">
+          <div class="message assistant"><b>ASHOK GPT</b><p>Welcome! This is the starter interface. Connect an AI model to enable real answers. For now, I can show the workflow and help you plan the next modules.</p></div>
+        </div>
+        <form class="composer" id="chatForm">
+          <textarea id="prompt" rows="1" placeholder="Ask ASHOK GPT anything..." required></textarea>
+          <label class="attach" title="Choose a file">＋<input type="file" id="fileInput" hidden></label>
+          <button class="send" type="submit" aria-label="Send">➤</button>
+        </form>
+        <p class="fine-print">Prototype only · No message is sent to an AI service yet.</p>
+      </section>
+
+      <section class="panel" id="panel-models">
+        <div class="section-heading"><p class="eyebrow">MODEL CONTROL CENTER</p><h2>Multi-AI Hub</h2><p class="muted">Choose a provider for different tasks. This is a model selector prototype; real connections require provider credentials or a local model runtime.</p></div>
+        <div class="model-notice">Important: this does not bundle every GPT or paid AI model. It prepares one place to connect models you are authorized to use. Keep API keys on a secure backend, never in browser JavaScript.</div>
+        <div class="model-list">
+          <article class="model-card">
+            <div class="model-logo">GPT</div><div class="model-info"><h3>OpenAI models</h3><p>Chat, reasoning and coding models available to your account/API plan.</p><span class="model-tag">API access may cost money</span></div><button class="model-select" data-model="OpenAI">Select</button>
+          </article>
+          <article class="model-card">
+            <div class="model-logo">G</div><div class="model-info"><h3>Google Gemini</h3><p>Chat, coding and supported multimodal tasks, subject to model and account limits.</p><span class="model-tag">Free-tier limits may apply</span></div><button class="model-select" data-model="Gemini">Select</button>
+          </article>
+          <article class="model-card">
+            <div class="model-logo">C</div><div class="model-info"><h3>Anthropic Claude</h3><p>Connect supported Claude models through an authorized API account.</p><span class="model-tag">API access may cost money</span></div><button class="model-select" data-model="Claude">Select</button>
+          </article>
+          <article class="model-card">
+            <div class="model-logo">OR</div><div class="model-info"><h3>OpenRouter</h3><p>One integration for multiple supported providers and models; pricing varies by model.</p><span class="model-tag">Model-specific pricing</span></div><button class="model-select" data-model="OpenRouter">Select</button>
+          </article>
+          <article class="model-card">
+            <div class="model-logo">OL</div><div class="model-info"><h3>Ollama / local models</h3><p>Run compatible open models on a PC or server you control. A phone alone may be too limited for larger models.</p><span class="model-tag">No per-token API bill; hardware needed</span></div><button class="model-select" data-model="Ollama">Select</button>
+          </article>
+        </div>
+        <div class="selected-model" id="selectedModel">Selected provider: Demo mode (no AI connected)</div>
+        <p class="fine-print">Model availability, licences, context limits, image/video support and costs vary. Third-party custom GPTs cannot simply be copied into this app; use supported APIs or authorized integrations.</p>
+      </section>
+
+      <section class="panel" id="panel-coding">
+        <div class="section-heading"><p class="eyebrow">DEVELOPER TOOLS</p><h2>Coding Lab</h2><p class="muted">A workspace for code review, debugging and project planning.</p></div>
+        <div class="tool-grid">
+          <article class="tool-card"><span>⌘</span><h3>Code Assistant</h3><p>Generate or explain code once an AI backend is connected.</p><button class="outline-action" data-prompt="Help me write and explain Java code">Start a coding chat ↗</button></article>
+          <article class="tool-card"><span>⌕</span><h3>Error Analyzer</h3><p>Paste a stack trace and plan a safe debugging workflow.</p><button class="outline-action" data-prompt="Help me analyze this error log:">Analyze an error ↗</button></article>
+          <article class="tool-card"><span>▤</span><h3>Project Files</h3><p>Select files using the attachment control in chat.</p><button class="outline-action" id="pickFile">Choose files ↗</button></article>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-mods">
+        <div class="section-heading"><p class="eyebrow">GAME DEVELOPMENT</p><h2>Mod & Plugin Maker</h2><p class="muted">Plan, inspect and build projects with a connected model and build environment.</p></div>
+        <div class="workflow">
+          <div><span class="step">01</span><h3>Inspect</h3><p>Review source files, game version, loader and dependencies.</p></div>
+          <div><span class="step">02</span><h3>Repair</h3><p>Suggest a fix, preserve backups and review changed files.</p></div>
+          <div><span class="step">03</span><h3>Build & test</h3><p>Run Gradle or supported tests in a controlled environment.</p></div>
+        </div>
+        <div class="notice">This prototype does not compile JARs yet. A secure build runner must be added before running uploaded code.</div>
+        <button class="primary-action" data-prompt="Help me design a Minecraft Fabric mod. Ask me for the Minecraft version and features.">Start a mod project ↗</button>
+      </section>
+
+      <section class="panel" id="panel-assets">
+        <div class="section-heading"><p class="eyebrow">CREATIVE WORKSPACE</p><h2>Texture & Assets</h2><p class="muted">Create a resource-pack plan and organize textures, models and JSON files.</p></div>
+        <div class="tool-grid">
+          <article class="tool-card"><span>▧</span><h3>Texture planner</h3><p>Define pack format, resolution, style and target version.</p><button class="outline-action" data-prompt="Help me plan a Minecraft resource pack. Ask for version and style.">Plan a pack ↗</button></article>
+          <article class="tool-card"><span>◇</span><h3>Model & JSON</h3><p>Draft model JSON and asset structure for review.</p><button class="outline-action" data-prompt="Help me create a Minecraft custom item model JSON">Create model files ↗</button></article>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-video">
+        <div class="section-heading"><p class="eyebrow">VIDEO CREATION</p><h2>Motion Video Studio</h2><p class="muted">Plan edits, motion graphics, captions and beat-sync timelines.</p></div>
+        <div class="notice">Actual video rendering and AI video generation need a rendering engine or compatible model. Watermark-free export depends on the chosen tool's licence and settings.</div>
+        <button class="primary-action" data-prompt="Help me create a motion-video storyboard for a YouTube Short. Ask about mood, duration and footage.">Create a storyboard ↗</button>
+      </section>
+
+      <section class="panel" id="panel-memory">
+        <div class="section-heading"><p class="eyebrow">PERSONALIZATION</p><h2>Memory</h2><p class="muted">A starter area for preferences and project notes. Saved here only in this browser.</p></div>
+        <form id="memoryForm" class="memory-form"><label for="memoryText">Add a note or preference</label><textarea id="memoryText" rows="3" placeholder="Example: My Minecraft project uses Fabric..."></textarea><button class="primary-action" type="submit">Save memory</button></form>
+        <div id="memoryList" class="memory-list"></div>
+        <p class="fine-print">Browser-local prototype memory is not cloud-synced and can be cleared with browser data.</p>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
